@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Indie Flower', cursive;
+}
+
+body {
+    margin: 0px;
+}
+
+.flex-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    width: 90vw;
+    text-align: center;
+}
+
+.login {
+    width: 10vw;
+}
+
+.login button {
+    cursor: pointer;
+    height: 2rem;
+    background-color: #88C4E7;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #45A3D9;
+}
+
+header {
+    height: 10vh;
+}
+
+main {
+    height: 90vh;
+    background-image: url('/img/background.jpg');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notes-section {
+    width: 80vw;
+    height: 80vh;
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.notes-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    overflow: scroll;
+    height: 80%;
+}
+
+.note {
+    width: 200px;
+    height: 200px;
+    background-color: #edf16b;
+    overflow: hidden;
+    margin: 10px;
+}
+
+.note h2 {
+    margin: 0px;
+}
+
+.note p {
+    font-size: 10px;
+    overflow: scroll;
+    height: 60%;
+}
+
+a, a:visited, a:active {
+    text-decoration: none;
+    color: black;
+}
+
+/* Login view */
+h1 {
+    text-align: center;
+}
+
+.login-section {
+    width: 50vw;
+    height: 40vh;
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.form-field {
+    margin: auto;
+    width: 80%;
+    margin: 1rem auto; 
+}
+
+.password-field {
+    position: relative;
+}
+
+.password-field i {
+    position: absolute;
+    right: 0.4rem;
+    top: 0.3rem;
+    color: gray;
+}
+
+.password-field i:hover {
+    color: black;
+    cursor: pointer;
+}
+
+.form-field input {
+    width: 100%;
+}
+
+.form-field button {
+    margin: auto;
+    width: 50%;
+    background-color: #88C4E7;
+    border: none;
+    border-radius: 2px;
+}
+
+p.error {
+    color: red;
+    margin: 0px;
+    text-align: center;
+    font-size: 10px;
+    display: none;
+}
+
+.enable {
+    display: block !important;
+}
+
+@media (max-width: 590px) {
+    .notes-container {
+        justify-content: center;
+    }
+
+    .login-span {
+        display: none;
+    }
+
+    .login button {
+        width: 90%;
+    }
+
+    .login-section {
+        width: 70vw;
+        height: 60vh;
+        background-color: white;
+        border-radius: 0.5rem;
+        padding: 1rem;
+    }
+
+    .form-field button {
+        width: 80%;
+    }
+}

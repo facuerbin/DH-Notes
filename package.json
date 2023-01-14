@@ -1,0 +1,25 @@
+{
+  "name": "dh_notes",
+  "version": "1.0.0",
+  "description": "Proyecto de post its",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Post",
+    "its",
+    "Modulo",
+    "4",
+    "DH"
+  ],
+  "author": "Facu Erbin",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
