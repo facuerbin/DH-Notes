@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <title>DH Notes</title>
+  </head>
+  <body>
+    <header class="flex-container">
+      <div class="logo">
+        <strong>DH-Notes</strong>
+      </div>
+      <div class="login">
+        <a href="/login">
+          <button type="button">
+            <span class="login-span">Login</span>
+            <i class="fas fa-sign-in-alt"></i>
+          </button>
+        </a>
+      </div>
+    </header>
+    <main>
+      <section class="notes-section">
+        <h1>Notas:</h1>
+        <section class="notes-container">
+          <% notas.forEach((nota, index) => {%>
+          <article
+            class="note"
+            id="btn-edit-<%= index%>"
+            onclick="showEditModal('<%= nota.id%>','<%= nota.title%>' , '<%= nota.body%>')"
+          >
+            <h2><%= nota.title%></h2>
+            <p><%= nota.body%></p>
+          </article>
+          <% }) %>
+        </section>
+        <section class="btn-container">
+          <button id="btn-create" class="btn-primary">Agregar nota</button>
+        </section>
+      </section>
+    </main>
+
+    <!-- Create Modal -->
+    <div id="createModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Crear una nueva nota:</p>
+        <form action="/notes" method="post">
+          <section class="form-field">
+            <div>
+              <label for="title">Titúlo:</label>
+            </div>
+            <input type="text" name="title" id="title" class="title-input" />
+            <!-- <p class="error enable">Por favor ingrese un mail válido</p> -->
+          </section>
+
+          <section class="form-field">
+            <div>
+              <label for="body">Contenido de la nota:</label>
+            </div>
+            <textarea
+              name="body"
+              id="body"
+              cols="200"
+              rows="5"
+              class="note-body"
+            ></textarea>
+            <!-- <p class="error enable">Por favor ingrese un mail válido</p> -->
+          </section>
+          <section class="form-field">
+            <button type="submit">Crear</button>
+          </section>
+        </form>
+      </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Editar nota:</p>
+        <form action="/notes/edit" method="post">
+          <section class="form-field">
+            <div>
+              <label for="title">Titúlo:</label>
+            </div>
+            <input
+              type="text"
+              name="title"
+              id="editTitle"
+              class="title-input"
+            />
+            <!-- <p class="error enable">Por favor ingrese un mail válido</p> -->
+          </section>
+
+          <section class="form-field">
+            <div>
+              <label for="body">Contenido de la nota:</label>
+            </div>
+            <textarea
+              name="body"
+              id="bodyEdit"
+              cols="200"
+              rows="5"
+              class="note-body"
+            ></textarea>
+            <!-- <p class="error enable">Por favor ingrese un mail válido</p> -->
+          </section>
+          <input type="hidden" name="id" id="hiddenId">
+          <section class="form-field">
+            <button type="submit">Editar</button>
+            <button id="btn-delete" class="btn-danger" type="button">Delete</button>
+          </section>
+        </form>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    // Traemos el modal
+    let modalCreate = document.getElementById("createModal");
+    let modalEdit =  document.getElementById("editModal");
+
+    // Traemos el botón que va a abrir el modal
+    let btn = document.getElementById("btn-create");
+    let btnEdit = document.getElementById("btn-edit");
+    let btnDelete = document.getElementById("btn-delete");
+
+    // Traemos el span que cierra el modal
+    let span = document.getElementsByClassName("close")[0];
+
+    let editedNoteId = null;
+
+    // Clic en el botón abre el modal
+    btn.onclick = function () {
+      modalCreate.style.display = "block";
+    };
+
+    btnDelete.onclick = function () {
+      let url = 'http://localhost:3000/notes/delete/' + editedNoteId;
+
+      fetch(url).then((result) => {
+        location.reload();
+      }).catch((e) => console.log(e))
+    }
+
+
+    function showEditModal (id, title, body) {
+      editedNoteId = id;
+      let editTitle =  document.getElementById("editTitle");
+      let bodyEdit = document.getElementById("bodyEdit");
+      let idInput = document.getElementById("hiddenId");
+
+      editTitle.value = title;
+      bodyEdit.value = body;
+      idInput.value = id;
+
+      modalEdit.style.display = "block";
+      console.log(title)
+    }
+
+    // Clic en la x cierra el modal
+    span.onclick = function () {
+      modalCreate.style.display = "none";
+    };
+
+    // Cuando hago clic fuera del modal se cierra
+    window.onclick = function (event) {
+      if (event.target == modalCreate) {
+        modalCreate.style.display = "none";
+        modalEdit.style.display = "none"
+      }
+    };
+  </script>
+</html>

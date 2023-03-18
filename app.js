@@ -1,23 +1,21 @@
 const express = require('express');
+const { appendFileSync } = require('fs');
 const path = require('path');
+const mainRouter = require('./routes/mainRoutes');
 const app = express();
 const port = 3000;
 
 // Configuraciones
 app.use(express.static('public'));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
-// Rutas
-app.get('/', (req, res) => {
-    res.sendFile(
-        path.join(__dirname, './views/index.html')
-    );
-});
+// Template Engine
+app.set('view engine', 'ejs');
 
-app.get('/login', (req, res) => {
-    res.sendFile(
-        path.join(__dirname, './views/login.html')
-    );
-});
+// Routes
+app.use(mainRouter);
+
 
 app.listen(port, () => {
     console.log('Escuchando en el puerto ' + port)

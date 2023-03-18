@@ -1,3 +1,12 @@
+/* Colors */
+:root{
+    --primary: #45A3D9;
+    --primary-light: #88C4E7;
+    --secondary: #edf16b;
+}
+
+
+
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 
 * {
@@ -27,13 +36,25 @@ body {
 .login button {
     cursor: pointer;
     height: 2rem;
-    background-color: #88C4E7;
+    background-color:var(--primary-light);
     border: none;
     border-radius: 5px;
 }
 
+.form-field input {
+    width: 100%;
+}
+
+.form-field button {
+    margin: auto;
+    width: 50%;
+    background-color: #88C4E7;
+    border: none;
+    border-radius: 2px;
+}
+
 button:hover {
-    background-color: #45A3D9;
+    background-color: var(--primary);
 }
 
 header {
@@ -60,7 +81,7 @@ main {
 .notes-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    gap: 1em;
     overflow: scroll;
     height: 80%;
 }
@@ -68,9 +89,10 @@ main {
 .note {
     width: 200px;
     height: 200px;
-    background-color: #edf16b;
+    background-color: var(--secondary);
     overflow: hidden;
     margin: 10px;
+    cursor: pointer;
 }
 
 .note h2 {
@@ -79,7 +101,6 @@ main {
 
 .note p {
     font-size: 10px;
-    overflow: scroll;
     height: 60%;
 }
 
@@ -87,6 +108,84 @@ a, a:visited, a:active {
     text-decoration: none;
     color: black;
 }
+
+.btn-container {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh;
+}
+
+.btn-primary {
+    width: 150px;
+    cursor: pointer;
+    height: 3em;
+    background-color: var(--primary-light);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 1em;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary);
+}
+
+.form-field .btn-danger {
+    background-color: tomato;
+}
+
+.btn-danger:hover {
+    background-color: red;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  input.title-input {
+    width: 250px !important;
+  }
+
+  textarea.note-body {
+    width: 80%;
+}
+
 
 /* Login view */
 h1 {
@@ -121,18 +220,6 @@ h1 {
 .password-field i:hover {
     color: black;
     cursor: pointer;
-}
-
-.form-field input {
-    width: 100%;
-}
-
-.form-field button {
-    margin: auto;
-    width: 50%;
-    background-color: #88C4E7;
-    border: none;
-    border-radius: 2px;
 }
 
 p.error {
