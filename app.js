@@ -1,6 +1,4 @@
 const express = require('express');
-const { appendFileSync } = require('fs');
-const path = require('path');
 const mainRouter = require('./routes/mainRoutes');
 const app = express();
 const port = 3000;

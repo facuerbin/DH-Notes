@@ -1,54 +1,46 @@
-const { getNotes, writeNotes } = require('../data/model');
-const uuid = require('uuid');
+const db = require("../data/models/index");
 
 const controller = {
-    index: (req, res) => {
-        const storedNotes = getNotes();
+    index: async (req, res) => {
+        const storedNotes = await db.Note.findAll();
         res.render('index', {notas: storedNotes});
     },
     login:  (req, res) => {
         res.render('login');
     },
-    create: (req, res) => {
+    create: async (req, res) => {
+        // const topic = await db.Topic.findByPk(1);
+        
         const newNote = {
-            id: uuid.v4(),
             title: req.body.title,
             body: req.body.body,
+            // topics: topic,
         };
 
-        const storedNotes = getNotes();
-        storedNotes.push(newNote);
-        
-        writeNotes(storedNotes);
+        await db.Note.create(
+            newNote,
+            // {
+            //     include: db.Topic
+            // }
+            );
         res.redirect('/');
     },
-    edit: (req, res) => {
+    edit: async (req, res) => {
         if (!req.body.id || !req.body.title || !req.body.body) return res.send('Error');
-
-        const storedNotes = getNotes();
         const note =  {
-            id: req.body.id,
             title: req.body.title,
             body: req.body.body
         };
-      
-        writeNotes(storedNotes.map((element) => {
-            if (element.id == req.body.id) {
-                return note;
-            }
-            return element;
-        }));
+
+        await db.Note.update(note, {where: {id: req.body.id}});
 
         res.redirect('/');
     },
-    delete: (req, res) => {
+    delete: async (req, res) => {
         if (!req.params.id) return res.send('Error');
-        const storedNotes = getNotes();
 
+        await db.Note.destroy({where: {id: req.params.id}});
 
-        writeNotes(storedNotes.filter((note) => {
-            return note.id != req.params.id;
-        }));
         res.redirect('/');
     }
 }
