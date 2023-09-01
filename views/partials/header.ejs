@@ -1,0 +1,31 @@
+<header class="flex-container">
+  <a href="/">
+    <div class="logo">
+      <strong>DH-Notes</strong>
+    </div>
+  </a>
+  <div class="login">
+    <% if (locals.session) {%>
+    <a href="/users/profile">
+      <button type="button">
+        <span class="login-span"><%= locals.session.fName%></span>
+        <i class="fas fa-user-circle"></i>
+      </button>
+    </a>
+    <a href="/logout">
+      <button type="button">
+        <span class="login-span">Logout</span>
+        <i class="fas fa-sign-out-alt"></i>
+      </button>
+    </a>
+    <% } else { %>
+    <a href="/login">
+      <button type="button">
+        <span class="login-span">Login</span>
+        <i class="fas fa-sign-in-alt"></i>
+      </button>
+    </a>
+
+    <% } %>
+  </div>
+</header>

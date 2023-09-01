@@ -1,31 +1,10 @@
 [
   {
-    "id": "6e9a0c99-4b06-48e6-81b0-34305ffe4508",
+    "id": "3a674585-b35f-45ab-9c45-f10fa0f245df",
     "email": "facuerbin@gmail.com",
-    "password": "algofacil",
+    "password": "$2b$10$ZfJM5/I/L.Z7fZLzZuJkHOYtSuU7nLPeYq37byPvlENn.q2LUK8oS",
     "fName": "Facu",
-    "lName": "Erbin"
-  },
-  {
-    "id": "939a47a6-534c-4285-95b4-75a0672298fe",
-    "email": "facuasdf@gmail.com",
-    "password": "asdfasdf",
-    "fName": "asdfasdf",
-    "lName": "asdfasdf"
-  },
-  {
-    "id": "360776fa-8211-4e2c-8d7a-7edb006245f8",
-    "email": "facuasdf@gmail.com",
-    "password": "asdfasdf",
-    "fName": "asdfasdf",
-    "lName": "asdfasdf"
-  },
-  {
-    "id": "908a949d-8acc-4390-bc59-fa01e9e413d8",
-    "email": "facasdfasdfu@gmail.com",
-    "password": "asdfasdfasdf",
-    "fName": "asdfsadfasdf",
-    "lName": "asdfasdfasdf",
-    "image": "img-1693007444448-455782178"
+    "lName": "Erbin",
+    "image": "img-1693611554825-573213630"
   }
 ]
