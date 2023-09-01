@@ -29,26 +29,32 @@
     </header>
     <main>
       <section class="login-section">
-        <h1>¡Inicia sesión!</h1>
+        <h1>Perfil de usuario</h1>
         <section class="login-form">
-          <form action="/login" method="POST">
+          <form action="/users/<%= user.id%>?_method=PUT" method="POST">
             <section class="form-field">
-              <input type="email" name="email" placeholder="E-mail" />
+                <img src="/profile/<%= user.image%>" alt="imagen de perfil">
+            </section>
+            <section class="form-field">
+              <input type="email" name="email" placeholder="E-mail" value="<%= user.email %>" />
               <p class="error enable">Por favor ingrese un mail válido</p>
             </section>
             <section class="form-field password-field">
-              <input type="password" name="password" placeholder="Contraseña" />
+              <input type="password" name="password" placeholder="Contraseña" value="<%= user.password %>" />
               <i class="fas fa-eye"></i>
               <p class="error">Por favor ingrese una contraseña válida</p>
             </section>
             <section class="form-field">
+              <input type="fName" name="fName" placeholder="Nombre" value="<%= user.fName %>"/>
+              <p class="error">Por favor ingrese su nombre</p>
+            </section>
+            <section class="form-field">
+              <input type="lName" name="lName" placeholder="Apellido" value="<%= user.lName %>" />
+              <p class="error">Por favor ingrese su apellido</p>
+            </section>
+            <section class="form-field">
               <div class="flex-container">
-                <button type="submit">Iniciar sesión</button>
-              </div>
-              <div class="flex-container mt-2">
-                <a href="/register">
-                  <button type="button">Registrate</button>
-                </a> 
+                <button type="submit">Editar</button>
               </div>
             </section>
           </form>

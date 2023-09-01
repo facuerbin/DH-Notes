@@ -1,4 +1,4 @@
-const { getNotes, writeNotes } = require('../data/model');
+const { getNotes, writeNotes, getUsers, writeUsers } = require('../data/model');
 const uuid = require('uuid');
 
 const controller = {
@@ -8,6 +8,70 @@ const controller = {
     },
     login:  (req, res) => {
         res.render('login');
+    },
+    processLogin: (req, res) => {
+        const { email, password } = req.body;
+
+        const users = getUsers();
+        const requiredUser = users.find((user) => user.email === email);
+        
+        if (!requiredUser) return res.send('Usuario no encontrado');
+
+        if (requiredUser.password === password) {
+            return res.redirect('/')
+        }
+        res.send('Contraseña incorrecta...');
+    },
+    register:  (req, res) => {
+        res.render('register');
+    },
+    processRegister: (req, res) => {
+        console.log(req.file);
+        const user = {
+            id: uuid.v4(),
+            email: req.body.email,
+            password: req.body.password,
+            fName: req.body.fName,
+            lName: req.body.lName,
+            image: req.file ? req.file.filename : 'default.jpg',
+        }
+        // img: req.
+
+        const users = getUsers();
+        users.push(user);
+
+        
+        writeUsers(users);
+        res.redirect('/login');
+    },
+    listUsers: (req, res) => {
+        const users = getUsers();
+        res.json(users);
+    },
+    userDetail: (req, res) => {
+        const users = getUsers();
+        const detail = users.find((user => user.id == req.params.id))
+        res.render('profile', { user: detail })
+    },
+    userEdit: (req, res) => {
+        const users = getUsers();
+        const editedUser = {
+            id: req.params.id,
+            email: req.body.email,
+            password: req.body.password,
+            fName: req.body.fName,
+            lName: req.body.lName,
+        }
+
+        const newUsers = users.map((user) => {
+            if (user.id == editedUser.id) {
+                return editedUser;
+            }
+            return user;
+        });
+
+        writeUsers(newUsers);
+        res.redirect('/users/' + req.params.id);
     },
     create: (req, res) => {
         const newNote = {

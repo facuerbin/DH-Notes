@@ -31,7 +31,7 @@
       <section class="login-section">
         <h1>¡Inicia sesión!</h1>
         <section class="login-form">
-          <form action="/login" method="POST">
+          <form action="/register" method="POST" enctype="multipart/form-data" >
             <section class="form-field">
               <input type="email" name="email" placeholder="E-mail" />
               <p class="error enable">Por favor ingrese un mail válido</p>
@@ -42,13 +42,20 @@
               <p class="error">Por favor ingrese una contraseña válida</p>
             </section>
             <section class="form-field">
+              <input type="fName" name="fName" placeholder="Nombre" />
+              <p class="error">Por favor ingrese su nombre</p>
+            </section>
+            <section class="form-field">
+              <input type="lName" name="lName" placeholder="Apellido" />
+              <p class="error">Por favor ingrese su apellido</p>
+            </section>
+            <section class="form-field">
+                <input type="file" name="image" />
+                <p class="error enable">Por favor cargue una imagen</p>
+              </section>
+            <section class="form-field">
               <div class="flex-container">
-                <button type="submit">Iniciar sesión</button>
-              </div>
-              <div class="flex-container mt-2">
-                <a href="/register">
-                  <button type="button">Registrate</button>
-                </a> 
+                <button type="submit">Registrate</button>
               </div>
             </section>
           </form>
